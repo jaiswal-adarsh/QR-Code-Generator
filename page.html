@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width-device-width,initial-scale=1.0">
+        <title>Your ORcode Generator</title>
+        <link rel="stylesheet" href="page.css">
+    </head>
+    <body>
+        <div class="box">
+            <p>Enter the Text or URL</p>
+            <input type="text" placeholder="Text/URL" id="txt">
+
+            <div id="image">
+                <img src=""  id="qimg">
+            </div>
+            <button onclick="generateCode()">Generate QR Code</button>
+        </div>
+        <script>
+            let image = document.getElementById("image");
+            let qimg = document.getElementById("qimg");
+            let txt = document.getElementById("txt");
+    
+            function generateCode(){
+                if(txt.value.length > 0){
+                qimg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +txt.value;
+                image.classList.add("show-img");
+                }
+                else{
+                   txt.classList.add('error');
+                   setTimeout(()=>{
+                    txt.classList.remove('error')
+                   },1000)
+                }
+            }
+        </script>
+    </body>
+</html>
